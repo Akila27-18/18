@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Complaint Registration</h2>
+
+{% if form.errors %}
+    <div class="error-list">
+        <ul>
+        {% for field, errors in form.errors.items() %}
+            {% for error in errors %}
+                <li>{{ field.capitalize() }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+        {{ form.name.label }}
+        {{ form.name(size=32) }}
+    </div>
+
+    <div class="form-group">
+        {{ form.email.label }}
+        {{ form.email(size=32) }}
+    </div>
+
+    <div class="form-group">
+        {{ form.category.label }}
+        {{ form.category() }}
+    </div>
+
+    <div class="form-group">
+        {{ form.complaint.label }}
+        {{ form.complaint(rows=5, cols=40) }}
+    </div>
+
+    <button type="submit">Submit Complaint</button>
+</form>
+{% endblock %}
